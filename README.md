@@ -35,7 +35,8 @@ and you configuration file should look like this:
     repo_directory: /home/lord63/code/tldr
 
 Don't worry about the `colors` option, it is for the output when you look for a command,
-you can custom it by yourself.
+you can custom it by yourself.(Note that the color should be in ['black', 'red', 'green',
+'yellow', 'blue', 'magenta', 'cyan', 'white'])
 
 ### Use tldr
 
