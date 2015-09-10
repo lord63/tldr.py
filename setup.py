@@ -33,6 +33,7 @@ setup(
     packages=['tldr'],
     install_requires=[
         'click>=5.0',
+        'PyYAML>=3.11',
     ],
     include_package_data=True,
     entry_points={
