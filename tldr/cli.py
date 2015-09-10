@@ -4,7 +4,9 @@
 from __future__ import absolute_import
 
 import json
+import os
 from os import path
+import subprocess
 import sys
 
 import click
@@ -65,7 +67,18 @@ def find(command):
 @cli.command()
 def update():
     """Update to the latest pages."""
-    pass
+    repo_directory = get_config()['repo_directory']
+    os.chdir(repo_directory)
+    click.echo("Check for updates...")
+
+    local = subprocess.check_output('git rev-parse master'.split())
+    remote = subprocess.check_output('git rev-parse origin'.split())
+    if local != remote:
+        click.echo("Updating...")
+        subprocess.check_call('git pull --rebase'.split())
+        click.echo("Updated.")
+    else:
+        click.echo("No need for updates.")
 
 
 @cli.command()
