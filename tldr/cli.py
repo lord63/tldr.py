@@ -83,7 +83,7 @@ def update():
 
 @cli.command()
 def init():
-    """Init config file and download the man pages."""
+    """Init config file."""
     default_config_path = path.join(path.expanduser('~'), '.tldrrc')
     if path.exists(default_config_path):
         click.echo("There is already a config file exists, "
