@@ -72,7 +72,9 @@ def update():
     click.echo("Check for updates...")
 
     local = subprocess.check_output('git rev-parse master'.split())
-    remote = subprocess.check_output('git rev-parse origin'.split())
+    remote = subprocess.check_output(
+        'git ls-remote https://github.com/tldr-pages/tldr/ HEAD'.split()
+    ).split()[0]
     if local != remote:
         click.echo("Updating...")
         subprocess.check_call('git pull --rebase'.split())
