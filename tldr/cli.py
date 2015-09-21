@@ -71,7 +71,7 @@ def update():
     os.chdir(repo_directory)
     click.echo("Check for updates...")
 
-    local = subprocess.check_output('git rev-parse master'.split())
+    local = subprocess.check_output('git rev-parse master'.split()).strip()
     remote = subprocess.check_output(
         'git ls-remote https://github.com/tldr-pages/tldr/ HEAD'.split()
     ).split()[0]
