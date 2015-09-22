@@ -1,5 +1,7 @@
 # tldr.py
 
+[![Latest Version][1]][2]
+
 Yet another python client for [tldr][].
 
 
@@ -64,4 +66,6 @@ Contributions are always welcome at any time! :sparkles: :cake: :sparkles:
 
 MIT.
 
+[1]: http://img.shields.io/pypi/v/tldr.py.svg
+[2]: https://pypi.python.org/pypi/tldr.py
 [tldr]: https://github.com/tldr-pages/tldr
