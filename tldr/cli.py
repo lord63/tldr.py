@@ -77,6 +77,7 @@ def update():
     ).split()[0]
     if local != remote:
         click.echo("Updating...")
+        subprocess.check_call('git checkout master'.split())
         subprocess.check_call('git pull --rebase'.split())
         click.echo("Updated.")
     else:
