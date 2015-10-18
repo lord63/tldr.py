@@ -3,6 +3,7 @@
 
 from __future__ import absolute_import
 
+import io
 import click
 
 from tldr.config import get_config
@@ -11,7 +12,7 @@ from tldr.config import get_config
 def parse_page(page):
     """Parse the command man page."""
     colors = get_config()['colors']
-    with open(page) as f:
+    with io.open(page) as f:
         lines = f.readlines()
     output_lines = []
     for line in lines:

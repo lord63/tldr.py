@@ -21,16 +21,23 @@ class TestParse(unittest.TestCase):
             'platform': 'linux',
             'repo_directory': '/tmp/tldr'
         }
+        mock_page = (
+            '\n#node\n\n'
+            '> Main node command\n\n'
+            '- Call an interactive node shell\n\n'
+            '`node`\n\n'
+            '- Execute node on a JS file\n\n'
+            '`node {{FILENAME}}.js`\n\n'
+        )
         with mock.patch('tldr.parser.get_config', return_value=mock_config):
-            result = parse_page('/tmp/tldr/pages/sunos/prctl.md')
-            assert ''.join(result) == (
-                '\n\x1b[0m\x1b[34m  Get or set the resource controls of '
-                'running processes,\n\x1b[0m\x1b[34m  tasks, and projects\n'
-                '\x1b[0m\n\x1b[0m\x1b[32m- examine process limits and '
-                'permissions\n\x1b[0m\n\x1b[0m\x1b[36m  prctl {{PID}}\n\x1b'
-                '[0m\n\x1b[0m\x1b[32m- examine process limits and permissions '
-                'in machine parseable format\n\x1b[0m\n\x1b[0m\x1b[36m  prctl '
-                '-P {{PID}}\n\x1b[0m\n\x1b[0m\x1b[32m- Get specific limit for '
-                'a running process\n\x1b[0m\n\x1b[0m\x1b[36m  prctl -n '
-                'process.max-file-descriptor {{PID}}\x1b[0m'
-            )
+            with mock.patch('io.open', mock.mock_open(read_data=mock_page)):
+                result = parse_page('/repo_directory/pages/common/node.md')
+                assert ''.join(result) == (
+                    '\n\x1b[0m\n\x1b[0m\x1b[34m'
+                    '  Main node command\n'
+                    '\x1b[0m\n\x1b[0m\x1b[32m- Call an interactive node shell'
+                    '\n\x1b[0m\n\x1b[0m\x1b[36m  node\n'
+                    '\x1b[0m\n\x1b[0m\x1b[32m- Execute node on a JS file\n'
+                    '\x1b[0m\n\x1b[0m\x1b[36m  node {{FILENAME}}.js\n'
+                    '\x1b[0m\n\x1b[0m'
+                )
