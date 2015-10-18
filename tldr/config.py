@@ -3,6 +3,7 @@
 
 from __future__ import absolute_import
 
+import io
 from os import path
 import sys
 
@@ -16,7 +17,7 @@ def get_config():
         sys.exit("Can't find config file at: {0}. You may use `tldr init` "
                  "to init the config file.".format(config_path))
 
-    with open(config_path) as f:
+    with io.open(config_path) as f:
         try:
             config = yaml.safe_load(f)
         except yaml.scanner.ScannerError:

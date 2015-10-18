@@ -3,6 +3,7 @@
 
 from __future__ import absolute_import
 
+import io
 import os
 from os import path
 import unittest
@@ -40,6 +41,6 @@ class TestInit(unittest.TestCase):
             'platform': 'linux',
             'repo_directory': '/tmp/tldr'
         }
-        with open(self.config_path) as f:
+        with io.open(self.config_path) as f:
             config = yaml.safe_load(f)
         assert expected_config == config

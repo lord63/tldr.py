@@ -3,6 +3,7 @@
 
 from __future__ import absolute_import
 
+import io
 import json
 import os
 from os import path
@@ -22,7 +23,7 @@ def find_page(command):
     repo_directory = get_config()['repo_directory']
     default_platform = get_config()['platform']
 
-    with open(path.join(repo_directory, 'pages/index.json')) as f:
+    with io.open(path.join(repo_directory, 'pages/index.json')) as f:
         index = json.load(f)
     command_list = [item['name'] for item in index['commands']]
     if command not in command_list:
@@ -112,7 +113,8 @@ def init():
             "colors": colors,
             "platform": platform
         }
-        with open(default_config_path, 'w') as f:
-            f.write(yaml.safe_dump(config, default_flow_style=False))
+        with io.open(default_config_path, 'w') as f:
+            f.write(yaml.safe_dump(
+                config, default_flow_style=False).decode('utf-8'))
 
         click.echo("Initializing the config file at ~/.tldrrc")

@@ -38,7 +38,7 @@ class TestConfig(unittest.TestCase):
             )
 
     def test_invalid_yaml_file(self):
-        with mock.patch('__builtin__.open',
+        with mock.patch('io.open',
                         mock.mock_open(read_data="%YAML:1.0\nname:jhon")):
             with self.assertRaises(SystemExit) as error:
                 get_config()
