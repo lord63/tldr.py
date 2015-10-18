@@ -31,7 +31,7 @@ class TestFind(unittest.TestCase):
         result = self.runner.invoke(cli.find, ['tldr'])
         assert result.output == (
             '\n  Simplified man pages\n\n- get typical usages of a command '
-            '(hint: this is how you got here!)\n\n  tldr {{command}}\n'
+            '(hint: this is how you got here!)\n\n  tldr {{command}}\n\n'
         )
 
     def test_find_tcpflow_in_linux(self):
@@ -39,7 +39,7 @@ class TestFind(unittest.TestCase):
         assert result.output == (
             '\n  Capture TCP traffic for debugging and analysis\n\n- Show all '
             'data on the given interface and port\n\n  tcpflow -c -i {{eth0}} '
-            'port {{80}}\n'
+            'port {{80}}\n\n'
         )
 
     def test_can_not_find_something(self):

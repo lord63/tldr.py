@@ -47,7 +47,8 @@ def find_page(command):
 
     page_path = path.join(path.join(repo_directory, 'pages'),
                           path.join(platform, command + '.md'))
-    parse_page(page_path)
+    output_lines = parse_page(page_path)
+    click.echo(''.join(output_lines))
 
 
 @click.group(context_settings={'help_option_names': ('-h', '--help')})
