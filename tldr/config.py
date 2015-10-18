@@ -25,8 +25,8 @@ def get_config():
     supported_colors = ['black', 'red', 'green', 'yellow', 'blue',
                         'magenta', 'cyan', 'white']
     if not set(config['colors'].values()).issubset(set(supported_colors)):
-        sys.exit("Unsupported colors in config file: {0}".format(
-            ' '.join(set(config['colors'].values()) - set(supported_colors))))
+        sys.exit("Unsupported colors in config file: {0}.".format(
+            ', '.join(set(config['colors'].values()) - set(supported_colors))))
     if not path.exists(config['repo_directory']):
         sys.exit("Can't find the tldr repo, check the `repo_direcotry` "
                  "setting in config file.")
