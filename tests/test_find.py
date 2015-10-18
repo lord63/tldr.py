@@ -15,10 +15,17 @@ from tldr import cli
 
 class TestFind(unittest.TestCase):
     def setUp(self):
+        self.config_path = path.join(path.expanduser('~'), '.tldrrc')
+        if path.exists(self.config_path):
+            os.remove(self.config_path)
+
         self.runner = CliRunner()
         with mock.patch('click.prompt', side_effect=['/tmp/tldr', 'linux']):
-            runner = CliRunner()
-            result = runner.invoke(cli.init)
+            result = self.runner.invoke(cli.init)
+
+    def tearDown(self):
+        if path.exists(self.config_path):
+            os.remove(self.config_path)
 
     def test_find_tldr_in_common(self):
         result = self.runner.invoke(cli.find, ['tldr'])
