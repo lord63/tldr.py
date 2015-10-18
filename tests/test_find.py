@@ -21,7 +21,7 @@ class TestFind(unittest.TestCase):
 
         self.runner = CliRunner()
         with mock.patch('click.prompt', side_effect=['/tmp/tldr', 'linux']):
-            result = self.runner.invoke(cli.init)
+            self.runner.invoke(cli.init)
 
     def tearDown(self):
         if path.exists(self.config_path):

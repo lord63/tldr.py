@@ -7,10 +7,8 @@ import os
 from os import path
 import unittest
 
-import click
 from click.testing import CliRunner
 import mock
-import yaml
 
 from tldr.config import get_config
 from tldr import cli
@@ -24,7 +22,7 @@ class TestConfig(unittest.TestCase):
 
         self.runner = CliRunner()
         with mock.patch('click.prompt', side_effect=['/tmp/tldr', 'linux']):
-            result = self.runner.invoke(cli.init)
+            self.runner.invoke(cli.init)
 
     def tearDown(self):
         if path.exists(self.config_path):

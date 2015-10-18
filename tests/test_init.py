@@ -7,7 +7,6 @@ import os
 from os import path
 import unittest
 
-import click
 from click.testing import CliRunner
 import mock
 import yaml
