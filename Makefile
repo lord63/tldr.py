@@ -3,7 +3,7 @@ test:
 	@test ! -f "$(HOME)/.tldrrc" && echo "None, skip..." || (mv "$(HOME)/.tldrrc" "$(HOME)/.tldrrc_bak"; echo "backuped.");
 
 	@echo "Run the real tests.";
-	@py.test --pep8 -vs tests/ tldr/;
+	@py.test --cov-report term-missing --cov=tldr/ --pep8 -vs tests/ tldr/;
 
 	@echo "Restore the backup file if it exists after finishing the tests."
 	@test ! -f "$(HOME)/.tldrrc_bak" && echo "None, skip..." || (mv "$(HOME)/.tldrrc_bak" "$(HOME)/.tldrrc"; echo "restored.");
