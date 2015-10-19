@@ -15,14 +15,14 @@ import mock
 class BasicTestCase(unittest.TestCase):
     def setUp(self):
         self.config_path = path.join(path.expanduser('~'), '.tldrrc')
-        self.repe_dir = path.join(path.dirname(path.realpath(__file__)),
+        self.repo_dir = path.join(path.dirname(path.realpath(__file__)),
                                   'mock_tldr')
 
         if path.exists(self.config_path):
             os.remove(self.config_path)
 
         self.runner = CliRunner()
-        with mock.patch('click.prompt', side_effect=[self.repe_dir, 'linux']):
+        with mock.patch('click.prompt', side_effect=[self.repo_dir, 'linux']):
             self.runner.invoke(cli.init)
 
     def tearDown(self):

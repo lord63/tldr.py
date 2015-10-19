@@ -22,7 +22,7 @@ class TestInit(BasicTestCase):
                 'usage': 'green'
             },
             'platform': 'linux',
-            'repo_directory': self.repe_dir
+            'repo_directory': self.repo_dir
         }
         with io.open(self.config_path) as f:
             config = yaml.safe_load(f)
