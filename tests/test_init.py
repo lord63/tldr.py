@@ -4,27 +4,17 @@
 from __future__ import absolute_import
 
 import io
-import os
 from os import path
-import unittest
 
 from click.testing import CliRunner
 import mock
 import yaml
 
 from tldr import cli
+from basic import BasicTestCase
 
 
-class TestInit(unittest.TestCase):
-    def setUp(self):
-        self.config_path = path.join(path.expanduser('~'), '.tldrrc')
-        if path.exists(self.config_path):
-            os.remove(self.config_path)
-
-    def tearDown(self):
-        if path.exists(self.config_path):
-            os.remove(self.config_path)
-
+class TestInit(BasicTestCase):
     def test_init(self):
         with mock.patch('click.prompt', side_effect=['/tmp/tldr', 'linux']):
             runner = CliRunner()

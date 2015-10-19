@@ -3,30 +3,19 @@
 
 from __future__ import absolute_import
 
-import os
-from os import path
-import unittest
-
 from click.testing import CliRunner
 import mock
 
 from tldr.config import get_config
 from tldr import cli
+from basic import BasicTestCase
 
 
-class TestConfig(unittest.TestCase):
+class TestConfig(BasicTestCase):
     def setUp(self):
-        self.config_path = path.join(path.expanduser('~'), '.tldrrc')
-        if path.exists(self.config_path):
-            os.remove(self.config_path)
-
-        self.runner = CliRunner()
+        super(self.__class__, self).setUp()
         with mock.patch('click.prompt', side_effect=['/tmp/tldr', 'linux']):
-            self.runner.invoke(cli.init)
-
-    def tearDown(self):
-        if path.exists(self.config_path):
-            os.remove(self.config_path)
+            CliRunner().invoke(cli.init)
 
     def test_config_not_exist(self):
         with mock.patch('os.path.exists', side_effect=[False, True]):

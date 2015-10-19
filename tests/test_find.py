@@ -3,29 +3,19 @@
 
 from __future__ import absolute_import
 
-import os
-from os import path
-import unittest
-
 from click.testing import CliRunner
 import mock
 
 from tldr import cli
+from basic import BasicTestCase
 
 
-class TestFind(unittest.TestCase):
+class TestFind(BasicTestCase):
     def setUp(self):
-        self.config_path = path.join(path.expanduser('~'), '.tldrrc')
-        if path.exists(self.config_path):
-            os.remove(self.config_path)
-
+        super(self.__class__, self).setUp()
         self.runner = CliRunner()
         with mock.patch('click.prompt', side_effect=['/tmp/tldr', 'linux']):
             self.runner.invoke(cli.init)
-
-    def tearDown(self):
-        if path.exists(self.config_path):
-            os.remove(self.config_path)
 
     def test_find_tldr_in_common(self):
         result = self.runner.invoke(cli.find, ['tldr'])
