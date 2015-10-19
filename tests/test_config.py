@@ -32,7 +32,7 @@ class TestConfig(BasicTestCase):
                 'usage': 'green'
             },
             'platform': 'linux',
-            'repo_directory': '/tmp/tldr'
+            'repo_directory': self.repe_dir
         }
         with mock.patch('yaml.safe_load', return_value=mock_config):
             self._assert_exception_message(
