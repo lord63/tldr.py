@@ -1,0 +1,14 @@
+language: python
+
+python:
+    - "2.7"
+
+install:
+    - pip install -r dev-requirements.txt
+    - pip install -e .
+
+script:
+    - make test
+
+notifications:
+    email: false

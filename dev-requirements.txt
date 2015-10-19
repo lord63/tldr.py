@@ -1,0 +1,5 @@
+click
+PyYaml
+pytest
+pytest-pep8
+mock
