@@ -3,20 +3,11 @@
 
 from __future__ import absolute_import
 
-from click.testing import CliRunner
-import mock
-
 from tldr import cli
 from basic import BasicTestCase
 
 
 class TestFind(BasicTestCase):
-    def setUp(self):
-        super(self.__class__, self).setUp()
-        self.runner = CliRunner()
-        with mock.patch('click.prompt', side_effect=['/tmp/tldr', 'linux']):
-            self.runner.invoke(cli.init)
-
     def test_find_tldr_in_common(self):
         self._assert_command_output(
             'tldr',

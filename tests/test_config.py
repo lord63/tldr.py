@@ -3,20 +3,13 @@
 
 from __future__ import absolute_import
 
-from click.testing import CliRunner
 import mock
 
 from tldr.config import get_config
-from tldr import cli
 from basic import BasicTestCase
 
 
 class TestConfig(BasicTestCase):
-    def setUp(self):
-        super(self.__class__, self).setUp()
-        with mock.patch('click.prompt', side_effect=['/tmp/tldr', 'linux']):
-            CliRunner().invoke(cli.init)
-
     def test_config_not_exist(self):
         with mock.patch('os.path.exists', side_effect=[False, True]):
             self._assert_exception_message(
