@@ -19,9 +19,7 @@ class TestConfig(BasicTestCase):
 
     def test_config_not_exist(self):
         with mock.patch('os.path.exists', side_effect=[False, True]):
-            with self.assertRaises(SystemExit) as error:
-                get_config()
-            assert error.exception.message == (
+            self._assert_exception_message(
                 ("Can't find config file at: {0}. You may use `tldr init` to "
                  "init the config file.").format(self.config_path)
             )
@@ -29,9 +27,7 @@ class TestConfig(BasicTestCase):
     def test_invalid_yaml_file(self):
         with mock.patch('io.open',
                         mock.mock_open(read_data="%YAML:1.0\nname:jhon")):
-            with self.assertRaises(SystemExit) as error:
-                get_config()
-            assert error.exception.message == (
+            self._assert_exception_message(
                 "The config file is not a valid YAML file."
             )
 
@@ -46,17 +42,18 @@ class TestConfig(BasicTestCase):
             'repo_directory': '/tmp/tldr'
         }
         with mock.patch('yaml.safe_load', return_value=mock_config):
-            with self.assertRaises(SystemExit) as error:
-                get_config()
-            assert error.exception.message == (
+            self._assert_exception_message(
                 "Unsupported colors in config file: orange, indigo."
             )
 
     def test_repo_directory_not_exist(self):
         with mock.patch('os.path.exists', side_effect=[True, False]):
-            with self.assertRaises(SystemExit) as error:
-                get_config()
-            assert error.exception.message == (
+            self._assert_exception_message(
                 "Can't find the tldr repo, check the `repo_direcotry` "
                 "setting in config file."
             )
+
+    def _assert_exception_message(self, expected_message):
+        with self.assertRaises(SystemExit) as error:
+            get_config()
+        assert error.exception.message == expected_message
