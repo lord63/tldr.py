@@ -1,6 +1,10 @@
 # tldr.py
 
 [![Latest Version][1]][2]
+[![Build Status][3]][4]
+[![Coverage Status][5]][6]
+![Python Versions][7]
+
 
 Yet another python client for [tldr][].
 
@@ -68,4 +72,9 @@ MIT.
 
 [1]: http://img.shields.io/pypi/v/tldr.py.svg
 [2]: https://pypi.python.org/pypi/tldr.py
+[3]: https://travis-ci.org/lord63/tldr.py.svg
+[4]: https://travis-ci.org/lord63/tldr.py
+[5]: https://codecov.io/github/lord63/tldr.py/coverage.svg?branch=master
+[6]: https://codecov.io/github/lord63/tldr.py?branch=master
+[7]: https://img.shields.io/pypi/pyversions/tldr.py.svg
 [tldr]: https://github.com/tldr-pages/tldr
