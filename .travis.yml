@@ -1,0 +1,18 @@
+language: python
+
+python:
+    - "2.7"
+
+install:
+    - pip install codecov
+    - pip install -r dev-requirements.txt
+    - pip install -e .
+
+script:
+    - make test
+
+after_success:
+  - codecov
+
+notifications:
+    email: false

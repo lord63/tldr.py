@@ -3,6 +3,7 @@
 
 from __future__ import absolute_import
 
+import io
 import click
 
 from tldr.config import get_config
@@ -11,18 +12,20 @@ from tldr.config import get_config
 def parse_page(page):
     """Parse the command man page."""
     colors = get_config()['colors']
-    with open(page) as f:
+    with io.open(page) as f:
         lines = f.readlines()
+    output_lines = []
     for line in lines:
         if line.startswith('#'):
             continue
         elif line.startswith('>'):
-            click.secho(line.replace('>', ' '), fg=colors['description'],
-                        nl=False)
+            output_lines.append(click.style(line.replace('>', ' '),
+                                            fg=colors['description']))
         elif line.startswith('-'):
-            click.secho(line, fg=colors['usage'], nl=False)
+            output_lines.append(click.style(line, fg=colors['usage']))
         elif line.startswith('`'):
-            click.secho('  ' + line.replace('`', ''), fg=colors['command'],
-                        nl=False)
+            output_lines.append(click.style('  ' + line.replace('`', ''),
+                                            fg=colors['command']))
         else:
-            click.secho(line, nl=False)
+            output_lines.append(click.style(line))
+    return output_lines
