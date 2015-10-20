@@ -56,7 +56,7 @@ def find_page(command):
 @click.version_option(__version__, '-V', '--version', message='%(version)s')
 def cli():
     """A python client for tldr: simplified and community-driven man pages."""
-    pass
+    pass  # pragma: no cover
 
 
 @cli.command()
