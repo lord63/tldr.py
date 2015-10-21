@@ -11,3 +11,9 @@ test:
 restore:
 	@echo "Restore the backup file if it exists after failing the tests."
 	@test ! -f "$(HOME)/.tldrrc_bak" && echo "None, skip..." || (mv "$(HOME)/.tldrrc_bak" "$(HOME)/.tldrrc"; echo "restored.");
+
+create:
+	@python setup.py sdist bdist_wheel
+
+upload:
+	@python setup.py sdist bdist_wheel upload
