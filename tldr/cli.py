@@ -23,7 +23,8 @@ def find_page(command):
     repo_directory = get_config()['repo_directory']
     default_platform = get_config()['platform']
 
-    with io.open(path.join(repo_directory, 'pages/index.json')) as f:
+    with io.open(path.join(repo_directory, 'pages/index.json'),
+                 encoding='utf-8') as f:
         index = json.load(f)
     command_list = [item['name'] for item in index['commands']]
     if command not in command_list:
@@ -113,8 +114,7 @@ def init():
             "colors": colors,
             "platform": platform
         }
-        with io.open(default_config_path, 'w') as f:
-            f.write(yaml.safe_dump(
-                config, default_flow_style=False).decode('utf-8'))
+        with open(default_config_path, 'w') as f:
+            f.write(yaml.safe_dump(config, default_flow_style=False))
 
         click.echo("Initializing the config file at ~/.tldrrc")

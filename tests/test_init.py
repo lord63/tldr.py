@@ -27,7 +27,7 @@ class TestInit(BasicTestCase):
             'platform': 'linux',
             'repo_directory': self.repo_dir
         }
-        with io.open(self.config_path) as f:
+        with io.open(self.config_path, encoding='utf-8') as f:
             config = yaml.safe_load(f)
         assert expected_config == config
 
@@ -42,7 +42,7 @@ class TestInit(BasicTestCase):
         os.remove(self.config_path)
         with mock.patch('click.prompt', side_effect=['/notexist', 'linux']):
             result = self.runner.invoke(cli.init)
-        assert result.exception.message == (
+        assert result.exception.args[0] == (
             "Repo path not exist, clone it first."
         )
 
@@ -50,6 +50,6 @@ class TestInit(BasicTestCase):
         os.remove(self.config_path)
         with mock.patch('click.prompt', side_effect=[self.repo_dir, 'myos']):
             result = self.runner.invoke(cli.init)
-        assert result.exception.message == (
+        assert result.exception.args[0] == (
             "Platform should be in linux, osx or sunos."
         )

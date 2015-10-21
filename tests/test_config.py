@@ -28,7 +28,7 @@ class TestConfig(BasicTestCase):
         mock_config = {
             'colors': {
                 'command': 'indigo',
-                'description': 'orange',
+                'description': 'cyan',
                 'usage': 'green'
             },
             'platform': 'linux',
@@ -36,7 +36,7 @@ class TestConfig(BasicTestCase):
         }
         with mock.patch('yaml.safe_load', return_value=mock_config):
             self._assert_exception_message(
-                "Unsupported colors in config file: orange, indigo."
+                "Unsupported colors in config file: indigo."
             )
 
     def test_repo_directory_not_exist(self):
@@ -49,4 +49,4 @@ class TestConfig(BasicTestCase):
     def _assert_exception_message(self, expected_message):
         with self.assertRaises(SystemExit) as error:
             get_config()
-        assert error.exception.message == expected_message
+        assert error.exception.args[0] == expected_message
