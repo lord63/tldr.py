@@ -9,6 +9,25 @@
 Yet another python client for [tldr][].
 
 
+## Intro
+
+tldr.py is a python client for [tldr][]: simplified and community-driven man pages.
+Instead of the long man pages:
+
+![tar-man-page][]
+
+ tldr will give you several simple yet powerful examples:
+
+![tar-tldr-page][]
+
+The command examples are not good? Don't worry, you can set up your own 'tldr'!
+They are just markdown files and you can modify them at your ease. Don't forget to
+Share them with the community!
+
+One more thing, tldr is just a simple version for the man page, it's **NOT** an
+alternative. Sometimes, you should read the man pages patiently ;)
+
+
 ## Install
 
     $ (sudo) pip install tldr.py
@@ -78,3 +97,5 @@ MIT.
 [6]: https://codecov.io/github/lord63/tldr.py?branch=master
 [7]: https://img.shields.io/pypi/pyversions/tldr.py.svg
 [tldr]: https://github.com/tldr-pages/tldr
+[tar-man-page]: https://cloud.githubusercontent.com/assets/5268051/10731428/5b5fd2fc-7c30-11e5-8cb1-4a3a24218ede.jpeg
+[tar-tldr-page]: https://cloud.githubusercontent.com/assets/5268051/10731475/95df13fc-7c30-11e5-97d8-8090b6146208.jpeg
