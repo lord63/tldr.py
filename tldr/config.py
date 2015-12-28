@@ -29,7 +29,7 @@ def get_config():
         sys.exit("Unsupported colors in config file: {0}.".format(
             ', '.join(set(config['colors'].values()) - set(supported_colors))))
     if not path.exists(config['repo_directory']):
-        sys.exit("Can't find the tldr repo, check the `repo_direcotry` "
+        sys.exit("Can't find the tldr repo, check the `repo_directory` "
                  "setting in config file.")
 
     return config
