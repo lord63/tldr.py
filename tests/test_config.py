@@ -42,7 +42,7 @@ class TestConfig(BasicTestCase):
     def test_repo_directory_not_exist(self):
         with mock.patch('os.path.exists', side_effect=[True, False]):
             self._assert_exception_message(
-                "Can't find the tldr repo, check the `repo_direcotry` "
+                "Can't find the tldr repo, check the `repo_directory` "
                 "setting in config file."
             )
 
