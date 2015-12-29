@@ -28,6 +28,13 @@ One more thing, tldr is just a simple version for the man page, it's **NOT** an
 alternative. Sometimes, you should read the man pages patiently ;)
 
 
+## Features highlight
+
+* use local file, fast.
+* support custom the output color.
+* support fetch the latest tldr pages.
+
+
 ## Install
 
     $ (sudo) pip install tldr.py
@@ -74,6 +81,28 @@ check for updates(so that we can get the latest man pages):
     $ tldr update
 
 Or you can use `tldr --help` to get the help message.
+
+
+## FAQ
+
+> Q: I want to add some custom command usages to a command, how to do it?
+
+A: Find the location of the command page; add the command usages; done.
+
+> Q: I want to add some custom command pages, how?
+
+A: Add the comand pages to the right folder(e.g. /tldrrepo/pages/linux); rebuild the index; done.
+
+> Q: I don't like the default color theme, how to change it?
+
+A: Edit the tldr configuration file at `~/.tldrrc`; modify the color until you're happy with it.
+
+> Q: I faided to update the tldr pages, why?
+
+A: Actually, `tldr.py` just tries to pull the latest tldr pages for you, no magic behinds it. So the
+reason why you faided to update is that `tldr.py` failed to pull the latest upstream, check the failing
+output and you may know the reason, e.g. you make some changes and haven't commit them yet. You can
+pull the pages by hand so you can have a better control on it.
 
 
 ## Contributing
