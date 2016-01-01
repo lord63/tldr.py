@@ -5,6 +5,7 @@ from __future__ import absolute_import
 
 import io
 import json
+from operator import itemgetter
 import os
 from os import path
 import subprocess
@@ -118,3 +119,31 @@ def init():
             f.write(yaml.safe_dump(config, default_flow_style=False))
 
         click.echo("Initializing the config file at ~/.tldrrc")
+
+
+@cli.command()
+def reindex():
+    """Rebuild the index."""
+    repo_directory = get_config()['repo_directory']
+    index_path = path.join(repo_directory, 'pages', 'index.json')
+    page_path = path.join(repo_directory, 'pages')
+
+    tree_generator = os.walk(page_path)
+    folders = next(tree_generator)[1]
+    commands, new_index = {}, {}
+    for folder in folders:
+        pages = next(tree_generator)[2]
+        for page in pages:
+            command_name = path.splitext(page)[0]
+            if page not in commands:
+                commands[command_name] = {'name': command_name,
+                                          'platform': [folder]}
+            else:
+                commands[command_name]['platform'].append(folder)
+    command_list = [item[1] for item in
+                    sorted(commands.items(), key=itemgetter(0))]
+    new_index['commands'] = command_list
+
+    with io.open(index_path, mode='wb') as f:
+        json.dump(new_index, f)
+    click.echo('Rebuild the index.')
