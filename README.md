@@ -48,7 +48,7 @@ alternative. Sometimes, you should read the man pages patiently ;)
 command usage.
 
         $ cd ~/code
-        $ git clone git@github.com:tldr-pages/tldr.git
+        $ git clone https://github.com/lord63/tldr.py.git
 
 2. init the configuration file.
 
