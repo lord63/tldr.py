@@ -135,7 +135,7 @@ def reindex():
         pages = next(tree_generator)[2]
         for page in pages:
             command_name = path.splitext(page)[0]
-            if page not in commands:
+            if command_name not in commands:
                 commands[command_name] = {'name': command_name,
                                           'platform': [folder]}
             else:
