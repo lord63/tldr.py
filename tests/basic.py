@@ -42,3 +42,8 @@ class BasicTestCase(unittest.TestCase):
         with mock.patch('os.path.expanduser', return_value=self.repo_dir):
             result = self.runner.invoke(cli.find, [command_name])
         return result
+
+    def call_reindex_command(self):
+        with mock.patch('os.path.expanduser', return_value=self.repo_dir):
+            result = self.runner.invoke(cli.reindex)
+        return result
