@@ -48,5 +48,6 @@ class TestConfig(BasicTestCase):
 
     def _assert_exception_message(self, expected_message):
         with self.assertRaises(SystemExit) as error:
-            get_config()
+            with mock.patch('os.path.expanduser', return_value=self.repo_dir):
+                get_config()
         assert error.exception.args[0] == expected_message

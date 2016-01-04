@@ -3,6 +3,8 @@
 
 from __future__ import absolute_import
 
+import mock
+
 from tldr import cli
 from basic import BasicTestCase
 
@@ -40,5 +42,5 @@ class TestFind(BasicTestCase):
         )
 
     def _assert_command_output(self, command_name, expected_output):
-        result = self.runner.invoke(cli.find, [command_name])
+        result = self.call_find_command(command_name)
         assert result.output == expected_output
