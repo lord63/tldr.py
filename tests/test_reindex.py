@@ -40,5 +40,5 @@ class TestReindex(BasicTestCase):
         before_reindex = self.call_find_command('blabla')
         assert 'Sorry' in before_reindex.output
         self.call_reindex_command()
-        after_index = self.call_find_command('blabla')
-        assert 'tcpflow' in after_index.output
+        after_reindex = self.call_find_command('blabla')
+        assert 'tcpflow' in after_reindex.output

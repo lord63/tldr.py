@@ -144,6 +144,6 @@ def reindex():
                     sorted(commands.items(), key=itemgetter(0))]
     new_index['commands'] = command_list
 
-    with io.open(index_path, mode='wb') as f:
+    with open(index_path, mode='w') as f:
         json.dump(new_index, f)
     click.echo('Rebuild the index.')
