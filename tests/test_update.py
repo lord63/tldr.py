@@ -27,5 +27,7 @@ class TestUpdate(BasicTestCase):
     def _assert_update_info(self, mock_sha1, expected_message):
         with mock.patch('subprocess.check_output', side_effect=mock_sha1):
             with mock.patch('subprocess.check_call', side_effect=[0, 0]):
-                result = self.runner.invoke(cli.update)
+                with mock.patch('os.path.expanduser',
+                                return_value=self.repo_dir):
+                    result = self.runner.invoke(cli.update)
         assert expected_message in result.output
