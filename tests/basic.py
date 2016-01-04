@@ -12,24 +12,25 @@ from tldr import cli
 import mock
 import pytest
 
+ROOT = path.dirname(path.realpath(__file__))
+
 
 class BasicTestCase(unittest.TestCase):
     def setUp(self):
-        self.repo_dir = path.join(path.dirname(path.realpath(__file__)),
-                                  'mock_tldr')
+        self.repo_dir = path.join(ROOT, 'mock_tldr')
         self.config_path = path.join(self.repo_dir, '.tldrrc')
-
         self.runner = CliRunner()
-        with mock.patch('click.prompt', side_effect=[self.repo_dir, 'linux']):
-            self.call_init_command()
+        self.call_init_command()
 
     def tearDown(self):
         if path.exists(self.config_path):
             os.remove(self.config_path)
 
-    def call_init_command(self):
-        with mock.patch('os.path.expanduser', return_value=self.repo_dir):
-            result = self.runner.invoke(cli.init)
+    def call_init_command(self, repo_dir=path.join(ROOT, 'mock_tldr'),
+                          platform='linux'):
+        with mock.patch('click.prompt', side_effect=[repo_dir, platform]):
+            with mock.patch('os.path.expanduser', return_value=self.repo_dir):
+                result = self.runner.invoke(cli.init)
         return result
 
     def call_update_command(self):
