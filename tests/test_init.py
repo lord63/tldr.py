@@ -33,8 +33,7 @@ class TestInit(BasicTestCase):
 
     def test_wrong_platform_input(self):
         with mock.patch('click.prompt', side_effect=[self.repo_dir, 'linux']):
-            with mock.patch('os.path.expanduser', return_value=self.repo_dir):
-                result = self.runner.invoke(cli.init)
+            result = self.call_init_command()
         assert result.output == (
             "There is already a config file exists, skip initializing it.\n"
         )
@@ -42,8 +41,7 @@ class TestInit(BasicTestCase):
     def test_bad_repo_location(self):
         os.remove(self.config_path)
         with mock.patch('click.prompt', side_effect=['/notexist', 'linux']):
-            with mock.patch('os.path.expanduser', return_value=self.repo_dir):
-                result = self.runner.invoke(cli.init)
+            result = self.call_init_command()
         assert result.exception.args[0] == (
             "Repo path not exist, clone it first."
         )
@@ -51,8 +49,7 @@ class TestInit(BasicTestCase):
     def test_back_platform_input(self):
         os.remove(self.config_path)
         with mock.patch('click.prompt', side_effect=[self.repo_dir, 'myos']):
-            with mock.patch('os.path.expanduser', return_value=self.repo_dir):
-                result = self.runner.invoke(cli.init)
+            result = self.call_init_command()
         assert result.exception.args[0] == (
             "Platform should be in linux, osx or sunos."
         )

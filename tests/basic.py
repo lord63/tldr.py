@@ -10,6 +10,7 @@ import unittest
 from click.testing import CliRunner
 from tldr import cli
 import mock
+import pytest
 
 
 class BasicTestCase(unittest.TestCase):
@@ -20,9 +21,23 @@ class BasicTestCase(unittest.TestCase):
 
         self.runner = CliRunner()
         with mock.patch('click.prompt', side_effect=[self.repo_dir, 'linux']):
-            with mock.patch('os.path.expanduser', return_value=self.repo_dir):
-                self.runner.invoke(cli.init)
+            self.call_init_command()
 
     def tearDown(self):
         if path.exists(self.config_path):
             os.remove(self.config_path)
+
+    def call_init_command(self):
+        with mock.patch('os.path.expanduser', return_value=self.repo_dir):
+            result = self.runner.invoke(cli.init)
+        return result
+
+    def call_update_command(self):
+        with mock.patch('os.path.expanduser', return_value=self.repo_dir):
+            result = self.runner.invoke(cli.update)
+        return result
+
+    def call_find_command(self, command_name):
+        with mock.patch('os.path.expanduser', return_value=self.repo_dir):
+            result = self.runner.invoke(cli.find, [command_name])
+        return result
