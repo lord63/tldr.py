@@ -1,3 +1,7 @@
+2016.01.05 v0.3.0
+- support rebuild the index(#8), and rebuild the index after updating
+- improve tests, #12
+
 2015.10.21 v0.2.0
 - python3.x support
 - add tests and code coverage

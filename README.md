@@ -33,6 +33,7 @@ alternative. Sometimes, you should read the man pages patiently ;)
 * use local file, fast.
 * support custom the output color.
 * support fetch the latest tldr pages.
+* support rebuild the index.
 
 
 ## Install
