@@ -10,7 +10,7 @@ import unittest
 from click.testing import CliRunner
 from tldr import cli
 import mock
-import pytest
+
 
 ROOT = path.dirname(path.realpath(__file__))
 

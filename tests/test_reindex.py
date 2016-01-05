@@ -7,9 +7,6 @@ import os
 from os import path
 import shutil
 
-import mock
-
-from tldr import cli
 from basic import BasicTestCase
 
 
