@@ -10,7 +10,7 @@ import unittest
 from click.testing import CliRunner
 from tldr import cli
 import mock
-import pytest
+
 
 ROOT = path.dirname(path.realpath(__file__))
 
@@ -35,10 +35,16 @@ class BasicTestCase(unittest.TestCase):
 
     def call_update_command(self):
         with mock.patch('os.path.expanduser', return_value=self.repo_dir):
-            result = self.runner.invoke(cli.update)
+            with mock.patch('tldr.cli.build_index', return_value=None):
+                result = self.runner.invoke(cli.update)
         return result
 
     def call_find_command(self, command_name):
         with mock.patch('os.path.expanduser', return_value=self.repo_dir):
             result = self.runner.invoke(cli.find, [command_name])
+        return result
+
+    def call_reindex_command(self):
+        with mock.patch('os.path.expanduser', return_value=self.repo_dir):
+            result = self.runner.invoke(cli.reindex)
         return result

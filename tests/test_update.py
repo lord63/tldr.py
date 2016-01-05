@@ -5,7 +5,6 @@ from __future__ import absolute_import
 
 import mock
 
-from tldr import cli
 from basic import BasicTestCase
 
 

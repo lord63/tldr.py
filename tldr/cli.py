@@ -5,6 +5,7 @@ from __future__ import absolute_import
 
 import io
 import json
+from operator import itemgetter
 import os
 from os import path
 import subprocess
@@ -53,6 +54,31 @@ def find_page(command):
     click.echo(''.join(output_lines))
 
 
+def build_index():
+    repo_directory = get_config()['repo_directory']
+    index_path = path.join(repo_directory, 'pages', 'index.json')
+    page_path = path.join(repo_directory, 'pages')
+
+    tree_generator = os.walk(page_path)
+    folders = next(tree_generator)[1]
+    commands, new_index = {}, {}
+    for folder in folders:
+        pages = next(tree_generator)[2]
+        for page in pages:
+            command_name = path.splitext(page)[0]
+            if command_name not in commands:
+                commands[command_name] = {'name': command_name,
+                                          'platform': [folder]}
+            else:
+                commands[command_name]['platform'].append(folder)
+    command_list = [item[1] for item in
+                    sorted(commands.items(), key=itemgetter(0))]
+    new_index['commands'] = command_list
+
+    with open(index_path, mode='w') as f:
+        json.dump(new_index, f)
+
+
 @click.group(context_settings={'help_option_names': ('-h', '--help')})
 @click.version_option(__version__, '-V', '--version', message='%(version)s')
 def cli():
@@ -82,7 +108,8 @@ def update():
         click.echo("Updating...")
         subprocess.check_call('git checkout master'.split())
         subprocess.check_call('git pull --rebase'.split())
-        click.echo("Updated.")
+        build_index()
+        click.echo("Update to the latest and rebuild the index.")
     else:
         click.echo("No need for updates.")
 
@@ -118,3 +145,10 @@ def init():
             f.write(yaml.safe_dump(config, default_flow_style=False))
 
         click.echo("Initializing the config file at ~/.tldrrc")
+
+
+@cli.command()
+def reindex():
+    """Rebuild the index."""
+    build_index()
+    click.echo('Rebuild the index.')

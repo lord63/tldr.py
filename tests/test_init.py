@@ -8,9 +8,7 @@ import os
 from os import path
 
 import yaml
-import mock
 
-from tldr import cli
 from basic import BasicTestCase
 
 
