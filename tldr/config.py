@@ -4,6 +4,7 @@
 from __future__ import absolute_import
 
 import io
+import os
 from os import path
 import sys
 
@@ -12,7 +13,9 @@ import yaml
 
 def get_config():
     """Get the configurations from .tldrrc and return it as a dict."""
-    config_path = path.join(path.expanduser('~'), '.tldrrc')
+    config_path = path.join(
+        (os.environ.get('TLDR_CONFIG_DIR') or path.expanduser('~')),
+        '.tldrrc')
     if not path.exists(config_path):
         sys.exit("Can't find config file at: {0}. You may use `tldr init` "
                  "to init the config file.".format(config_path))
