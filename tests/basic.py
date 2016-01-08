@@ -19,6 +19,7 @@ class BasicTestCase(unittest.TestCase):
     def setUp(self):
         self.repo_dir = path.join(ROOT, 'mock_tldr')
         self.config_path = path.join(self.repo_dir, '.tldrrc')
+        os.environ['TLDR_CONFIG_DIR'] = self.repo_dir
         self.runner = CliRunner()
         self.call_init_command()
 
@@ -29,22 +30,18 @@ class BasicTestCase(unittest.TestCase):
     def call_init_command(self, repo_dir=path.join(ROOT, 'mock_tldr'),
                           platform='linux'):
         with mock.patch('click.prompt', side_effect=[repo_dir, platform]):
-            with mock.patch('os.path.expanduser', return_value=self.repo_dir):
-                result = self.runner.invoke(cli.init)
+            result = self.runner.invoke(cli.init)
         return result
 
     def call_update_command(self):
-        with mock.patch('os.path.expanduser', return_value=self.repo_dir):
-            with mock.patch('tldr.cli.build_index', return_value=None):
-                result = self.runner.invoke(cli.update)
+        with mock.patch('tldr.cli.build_index', return_value=None):
+            result = self.runner.invoke(cli.update)
         return result
 
     def call_find_command(self, command_name):
-        with mock.patch('os.path.expanduser', return_value=self.repo_dir):
-            result = self.runner.invoke(cli.find, [command_name])
+        result = self.runner.invoke(cli.find, [command_name])
         return result
 
     def call_reindex_command(self):
-        with mock.patch('os.path.expanduser', return_value=self.repo_dir):
-            result = self.runner.invoke(cli.reindex)
+        result = self.runner.invoke(cli.reindex)
         return result
