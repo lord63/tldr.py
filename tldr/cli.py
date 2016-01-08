@@ -117,7 +117,9 @@ def update():
 @cli.command()
 def init():
     """Init config file."""
-    default_config_path = path.join(path.expanduser('~'), '.tldrrc')
+    default_config_path = path.join(
+        (os.environ.get('TLDR_CONFIG_DIR') or path.expanduser('~')),
+        '.tldrrc')
     if path.exists(default_config_path):
         click.echo("There is already a config file exists, "
                    "skip initializing it.")
@@ -144,7 +146,8 @@ def init():
         with open(default_config_path, 'w') as f:
             f.write(yaml.safe_dump(config, default_flow_style=False))
 
-        click.echo("Initializing the config file at ~/.tldrrc")
+        click.echo("Initializing the config file at {0}".format(
+            default_config_path))
 
 
 @cli.command()
