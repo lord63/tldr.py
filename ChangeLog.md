@@ -1,3 +1,6 @@
+2016.01.12 v0.4.0
+- support custom the configuration file via `TLDR_CONFIG_DIR`, #9
+
 2016.01.05 v0.3.0
 - support rebuild the index(#8), and rebuild the index after updating
 - improve tests, #12
