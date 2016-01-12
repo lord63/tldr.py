@@ -51,7 +51,9 @@ command usage.
         $ cd ~/code
         $ git clone git@github.com:tldr-pages/tldr.git
 
-2. init the configuration file.
+2. init the configuration file, the default location for the configuration file is your
+home directory, you can use the `TLDR_CONFIG_DIR` environment variable to point it to
+another folder(e.g. $HOME/.config)
 
         $ tldr init
         Input the tldr repo path(absolute path): (e.g. /home/lord63/code/tldr/)
