@@ -45,3 +45,7 @@ class BasicTestCase(unittest.TestCase):
     def call_reindex_command(self):
         result = self.runner.invoke(cli.reindex)
         return result
+
+    def call_locate_command(self, command_name):
+        result = self.runner.invoke(cli.locate, [command_name])
+        return result

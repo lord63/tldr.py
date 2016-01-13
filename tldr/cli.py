@@ -19,7 +19,14 @@ from tldr.config import get_config
 from tldr.parser import parse_page
 
 
-def find_page(command):
+def parse_man_page(command):
+    """Parse the man page and return the parsed lines."""
+    page_path = find_page_location(command)
+    output_lines = parse_page(page_path)
+    return output_lines
+
+
+def find_page_location(command):
     """Find the command man page in the pages directory."""
     repo_directory = get_config()['repo_directory']
     default_platform = get_config()['platform']
@@ -50,8 +57,7 @@ def find_page(command):
 
     page_path = path.join(path.join(repo_directory, 'pages'),
                           path.join(platform, command + '.md'))
-    output_lines = parse_page(page_path)
-    click.echo(''.join(output_lines))
+    return page_path
 
 
 def build_index():
@@ -90,7 +96,8 @@ def cli():
 @click.argument('command')
 def find(command):
     """Find the command usage."""
-    find_page(command)
+    output_lines = parse_man_page(command)
+    click.echo(''.join(output_lines))
 
 
 @cli.command()
@@ -155,3 +162,10 @@ def reindex():
     """Rebuild the index."""
     build_index()
     click.echo('Rebuild the index.')
+
+
+@cli.command()
+@click.argument('command')
+def locate(command):
+    location = find_page_location(command)
+    click.echo(location)
