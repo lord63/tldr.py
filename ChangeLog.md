@@ -1,3 +1,6 @@
+2016.01.14 v0.5.0
+- support locate the command page, #11
+
 2016.01.12 v0.4.0
 - support custom the configuration file via `TLDR_CONFIG_DIR`, #9
 

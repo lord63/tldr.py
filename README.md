@@ -87,6 +87,10 @@ rebuild the index.json after you add some new pages:
 
     $ tldr reindex
 
+locate the command man page:
+
+    $ tldr locate {{command}}
+
 Or you can use `tldr --help` to get the help message.
 
 
