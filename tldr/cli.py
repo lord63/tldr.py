@@ -167,5 +167,6 @@ def reindex():
 @cli.command()
 @click.argument('command')
 def locate(command):
+    """Locate the command's man page."""
     location = find_page_location(command)
     click.echo(location)
