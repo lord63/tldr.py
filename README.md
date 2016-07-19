@@ -45,13 +45,13 @@ alternative. Sometimes, you should read the man pages patiently ;)
 
 ### Initialize
 
-1. clone the tldr repo to somewhere(e.g. ~/code/tldr). We will use it when we look for a
+* firstly, clone the tldr repo to somewhere(e.g. ~/code/tldr). We will use it when we look for a
 command usage.
 
         $ cd ~/code
         $ git clone git@github.com:tldr-pages/tldr.git
 
-2. init the configuration file, the default location for the configuration file is your
+* then, init the configuration file, the default location for the configuration file is your
 home directory, you can use the `TLDR_CONFIG_DIR` environment variable to point it to
 another folder(e.g. $HOME/.config)
 
@@ -72,6 +72,12 @@ and you configuration file should look like this:
 Don't worry about the `colors` option, it is for the output when you look for a command,
 you can custom it by yourself.(Note that the color should be in ['black', 'red', 'green',
 'yellow', 'blue', 'magenta', 'cyan', 'white'])
+
+* finally, build the index. Tldr.py will find the command via the index.json. After a new fresh clone or
+when you add some new pages, remember to rebuild the index.
+
+        $ tldr reindex
+        Rebuild the index.
 
 ### Use tldr
 
