@@ -170,7 +170,9 @@ def reindex():
 
 @cli.command()
 @click.argument('command')
-def locate(command):
+@click.option('--on', type=click.Choice(['linux', 'osx', 'sunos']),
+              help='the specified platform.')
+def locate(command, on):
     """Locate the command's man page."""
-    location = find_page_location(command)
+    location = find_page_location(command, on)
     click.echo(location)
