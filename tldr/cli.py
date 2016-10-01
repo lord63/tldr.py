@@ -19,17 +19,19 @@ from tldr.config import get_config
 from tldr.parser import parse_page
 
 
-def parse_man_page(command):
+def parse_man_page(command, platform):
     """Parse the man page and return the parsed lines."""
-    page_path = find_page_location(command)
+    page_path = find_page_location(command, platform)
     output_lines = parse_page(page_path)
     return output_lines
 
 
-def find_page_location(command):
+def find_page_location(command, specified_platform):
     """Find the command man page in the pages directory."""
     repo_directory = get_config()['repo_directory']
     default_platform = get_config()['platform']
+    command_platform = (
+        specified_platform if specified_platform else default_platform)
 
     with io.open(path.join(repo_directory, 'pages/index.json'),
                  encoding='utf-8') as f:
@@ -43,8 +45,8 @@ def find_page_location(command):
 
     supported_platforms = index['commands'][
         command_list.index(command)]['platform']
-    if default_platform in supported_platforms:
-        platform = default_platform
+    if command_platform in supported_platforms:
+        platform = command_platform
     elif 'common' in supported_platforms:
         platform = 'common'
     else:
@@ -94,9 +96,11 @@ def cli():
 
 @cli.command()
 @click.argument('command')
-def find(command):
+@click.option('--on', type=click.Choice(['linux', 'osx', 'sunos']),
+              help='the specified platform.')
+def find(command, on):
     """Find the command usage."""
-    output_lines = parse_man_page(command)
+    output_lines = parse_man_page(command, on)
     click.echo(''.join(output_lines))
 
 
