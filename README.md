@@ -49,7 +49,7 @@ alternative. Sometimes, you should read the man pages patiently ;)
 command usage.
 
         $ cd ~/code
-        $ git clone git@github.com:tldr-pages/tldr.git
+        $ git clone https://github.com/lord63/tldr.py.git
 
 * then, init the configuration file, the default location for the configuration file is your
 home directory, you can use the `TLDR_CONFIG_DIR` environment variable to point it to
