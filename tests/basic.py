@@ -38,14 +38,18 @@ class BasicTestCase(unittest.TestCase):
             result = self.runner.invoke(cli.update)
         return result
 
-    def call_find_command(self, command_name):
-        result = self.runner.invoke(cli.find, [command_name])
+    def call_find_command(self, command_name, platform):
+        command_args = (
+            [command_name, '--on', platform] if platform else [command_name])
+        result = self.runner.invoke(cli.find, command_args)
         return result
 
     def call_reindex_command(self):
         result = self.runner.invoke(cli.reindex)
         return result
 
-    def call_locate_command(self, command_name):
-        result = self.runner.invoke(cli.locate, [command_name])
+    def call_locate_command(self, command_name, platform):
+        command_args = (
+            [command_name, '--on', platform] if platform else [command_name])
+        result = self.runner.invoke(cli.locate, command_args)
         return result

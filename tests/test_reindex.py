@@ -34,8 +34,8 @@ class TestReindex(BasicTestCase):
                         path.join(self.page_path, 'index.json'))
 
     def test_reindex(self):
-        before_reindex = self.call_find_command('blabla')
+        before_reindex = self.call_find_command('blabla', platform='')
         assert 'Sorry' in before_reindex.output
         self.call_reindex_command()
-        after_reindex = self.call_find_command('blabla')
+        after_reindex = self.call_find_command('blabla', platform='')
         assert 'tcpflow' in after_reindex.output
