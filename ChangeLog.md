@@ -1,3 +1,6 @@
+2017.05.07 v0.6.0
+- support search commands in other platforms, #20
+
 2016.01.14 v0.5.0
 - support locate the command page, #11
 
