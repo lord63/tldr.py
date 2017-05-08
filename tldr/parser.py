@@ -15,17 +15,40 @@ def parse_page(page):
     with io.open(page, encoding='utf-8') as f:
         lines = f.readlines()
     output_lines = []
-    for line in lines:
-        if line.startswith('#'):
+    for line in lines[1:]:
+        if is_headline(line):
             continue
-        elif line.startswith('>'):
+        elif is_description(line):
             output_lines.append(click.style(line.replace('>', ' '),
                                             fg=colors['description']))
-        elif line.startswith('-'):
+        elif is_old_usage(line):
             output_lines.append(click.style(line, fg=colors['usage']))
-        elif line.startswith('`'):
-            output_lines.append(click.style('  ' + line.replace('`', ''),
+        elif is_code_example(line):
+            line = '  ' + line if line.startswith('`') else line[2:]
+            output_lines.append(click.style(line.replace('`', ''),
                                             fg=colors['command']))
-        else:
+        elif is_line_break(line):
             output_lines.append(click.style(line))
+        else:
+            output_lines.append(click.style('- ' + line, fg=colors['usage']))
     return output_lines
+
+
+def is_headline(line):
+    return line.startswith(('#', '='))
+
+
+def is_description(line):
+    return line.startswith('>')
+
+
+def is_old_usage(line):
+    return line.startswith('-')
+
+
+def is_code_example(line):
+    return line.startswith(('`', '    '))
+
+
+def is_line_break(line):
+    return line.startswith("\n")
