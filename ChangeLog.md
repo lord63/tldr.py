@@ -1,3 +1,6 @@
+2017.06.26 v0.7.0
+- support the new syntax, #22
+
 2017.05.07 v0.6.0
 - support search commands in other platforms, #20
 
