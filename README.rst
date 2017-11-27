@@ -134,7 +134,7 @@ A: Find the location of the command page; add the command usages; done.
 
     Q: I want to add some custom command pages, how?
 
-A: Add the comand pages to the right folder(e.g. /tldrrepo/pages/linux);
+A: Add the command pages to the right folder(e.g. /tldrrepo/pages/linux);
 rebuild the index; done.
 
     Q: I don't like the default color theme, how to change it?
