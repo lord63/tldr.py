@@ -66,7 +66,7 @@ Initialize
    ::
 
        $ tldr init
-       Input the tldr repo path(absolute path): (e.g. /home/lord63/code/tldr/)
+       Input the tldr repo path: (e.g. /home/lord63/code/tldr/)
        Input your platform(linux, osx or sunos): (e.g. linux)
        Initializing the config file at ~/.tldrrc
 
