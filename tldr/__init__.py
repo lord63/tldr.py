@@ -5,7 +5,7 @@
     tldr.py
     ~~~~~~
 
-    A python client for tldr: simplified and community-driven man pages.
+    A Python client for tldr: simplified and community-driven man pages.
 
     :copyright: (c) 2015 by lord63.
     :license: MIT, see LICENSE for more details.
