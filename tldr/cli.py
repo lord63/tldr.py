@@ -135,7 +135,8 @@ def init():
         click.echo("There is already a config file exists, "
                    "skip initializing it.")
     else:
-        repo_path = click.prompt("Input the tldr repo path(absolute path)")
+        repo_path = click.prompt("Input the tldr repo path")
+        repo_path = os.path.abspath(os.path.expanduser(repo_path))
         if not path.exists(repo_path):
             sys.exit("Repo path not exist, clone it first.")
 
