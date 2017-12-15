@@ -56,7 +56,7 @@ Initialize
    ::
 
        $ cd ~/code
-       $ git clone git@github.com:tldr-pages/tldr.git
+       $ git clone https://github.com/tldr-pages/tldr.git
 
 -  then, init the configuration file, the default location for the
    configuration file is your home directory, you can use the
