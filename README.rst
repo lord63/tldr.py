@@ -3,13 +3,13 @@ tldr.py
 
 |Latest Version| |Build Status| |Coverage Status| |Python Versions|
 
-Yet another python client for
+Yet another Python client for
 `tldr <https://github.com/tldr-pages/tldr>`__.
 
 Intro
 -----
 
-tldr.py is a python client for
+tldr.py is a Python client for
 `tldr <https://github.com/tldr-pages/tldr>`__: simplified and
 community-driven man pages. Instead of the long man pages:
 

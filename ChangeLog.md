@@ -15,7 +15,7 @@
 - improve tests, #12
 
 2015.10.21 v0.2.0
-- python3.x support
+- Python3.x support
 - add tests and code coverage
 - return parsed lines instead of print them directly
 - improve error output when detect unsupported color

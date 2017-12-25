@@ -12,7 +12,7 @@ with open('README.rst') as f:
 setup(
     name='tldr.py',
     version=tldr.__version__,
-    description='A python client for tldr: simplified and community-driven man pages.',
+    description='A Python client for tldr: simplified and community-driven man pages.',
     long_description=long_description,
     url='https://github.com/lord63/tldr.py',
     author='lord63',

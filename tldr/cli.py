@@ -90,7 +90,7 @@ def build_index():
 @click.group(context_settings={'help_option_names': ('-h', '--help')})
 @click.version_option(__version__, '-V', '--version', message='%(version)s')
 def cli():
-    """A python client for tldr: simplified and community-driven man pages."""
+    """A Python client for tldr: simplified and community-driven man pages."""
     pass  # pragma: no cover
 
 
@@ -140,7 +140,7 @@ def init():
         if not path.exists(repo_path):
             sys.exit("Repo path not exist, clone it first.")
 
-        platform = click.prompt("Input your platform(linux, osx or sunos)")
+        platform = click.prompt("Input your platform (linux, osx or sunos)")
         if platform not in ['linux', 'osx', 'sunos']:
             sys.exit("Platform should be linux, osx or sunos.")
 
