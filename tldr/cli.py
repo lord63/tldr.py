@@ -142,7 +142,7 @@ def init():
 
         platform = click.prompt("Input your platform(linux, osx or sunos)")
         if platform not in ['linux', 'osx', 'sunos']:
-            sys.exit("Platform should be in linux, osx or sunos.")
+            sys.exit("Platform should be linux, osx or sunos.")
 
         colors = {
             "description": "blue",
