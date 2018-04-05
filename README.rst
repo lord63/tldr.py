@@ -137,6 +137,10 @@ A: Find the location of the command page; add the command usages; done.
 A: Add the command pages to the right folder(e.g. /tldrrepo/pages/linux);
 rebuild the index; done.
 
+    Q: I want a short command like `tldr COMMAND`, not `tldr find COMMAND`.
+
+A: I'm afraid not, but you can add an alias: `alias howto='tldr find'`, then use `howto tar`.
+
     Q: I don't like the default color theme, how to change it?
 
 A: Edit the tldr configuration file at ``~/.tldrrc``; modify the color
