@@ -16,6 +16,7 @@ def get_config():
     config_path = path.join(
         (os.environ.get('TLDR_CONFIG_DIR') or path.expanduser('~')),
         '.tldrrc')
+    config_path = os.path.abspath(os.path.expanduser(config_path))
     if not path.exists(config_path):
         sys.exit("Can't find config file at: {0}. You may use `tldr init` "
                  "to init the config file.".format(config_path))
