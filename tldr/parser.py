@@ -5,7 +5,6 @@ from __future__ import absolute_import
 
 import io
 import click
-import pdb
 
 from tldr.config import get_config
 
