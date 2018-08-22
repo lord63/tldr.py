@@ -18,7 +18,7 @@ ROOT = path.dirname(path.realpath(__file__))
 class BasicTestCase(unittest.TestCase):
     def setUp(self):
         self.repo_dir = path.join(ROOT, 'mock_tldr')
-        self.config_path = path.join(self.repo_dir, '.tldrrc')
+        self.config_path = path.join(self.repo_dir, 'tldr.py.conf')
         os.environ['TLDR_CONFIG_DIR'] = self.repo_dir
         self.runner = CliRunner()
         self.call_init_command()

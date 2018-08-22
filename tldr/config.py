@@ -12,10 +12,12 @@ import yaml
 
 
 def get_config():
-    """Get the configurations from .tldrrc and return it as a dict."""
+    """Get the configurations from config file and return it as a dict."""
     config_path = path.join(
-        (os.environ.get('TLDR_CONFIG_DIR') or path.expanduser('~')),
-        '.tldrrc')
+        (os.environ.get('TLDR_CONFIG_DIR') or
+         os.environ.get('XDG_CONFIG_DIR') or
+         path.join(path.expanduser('~'), '.config')),
+        'tldr.py.conf')
     if not path.exists(config_path):
         sys.exit("Can't find config file at: {0}. You may use `tldr init` "
                  "to init the config file.".format(config_path))

@@ -129,8 +129,10 @@ def update():
 def init():
     """Init config file."""
     default_config_path = path.join(
-        (os.environ.get('TLDR_CONFIG_DIR') or path.expanduser('~')),
-        '.tldrrc')
+        (os.environ.get('TLDR_CONFIG_DIR') or
+         os.environ.get('XDG_CONFIG_DIR') or
+         path.join(path.expanduser('~'), '.config')),
+        'tldr.py.conf')
     if path.exists(default_config_path):
         click.echo("There is already a config file exists, "
                    "skip initializing it.")
