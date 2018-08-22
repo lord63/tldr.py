@@ -157,9 +157,11 @@ def init():
             sys.exit("Platform should be linux, osx or sunos.")
 
         colors = {
+            "headline": "red",
             "description": "blue",
             "usage": "green",
-            "command": "cyan"
+            "command": "cyan",
+            "parameter": "white"
         }
 
         config = {
