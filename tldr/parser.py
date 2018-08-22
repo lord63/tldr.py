@@ -44,7 +44,9 @@ def is_old_usage(line):
 
 
 def is_code_example(line):
-    return line.startswith(('`', '    '))
+    start_check = line.startswith(('`', '    '))
+    end_check = line.rstrip().endswith('`')
+    return (start_check and end_check)
 
 
 def is_line_break(line):
@@ -71,8 +73,14 @@ def _color_text_block(line,
         replace_open = start_marker + replace_open
         replace_close = replace_close + end_marker
 
-    line = line.replace(start_marker, replace_open)
-    line = line.replace(end_marker, replace_close)
+    if start_marker == end_marker:
+        line_p = line.split(start_marker)
+        for i in range(1, len(line_p), 2):
+            line_p[i] = replace_open + line_p[i] + replace_close
+        line = ''.join(line_p)
+    else:
+        line = line.replace(start_marker, replace_open)
+        line = line.replace(end_marker, replace_close)
 
     return line
 
