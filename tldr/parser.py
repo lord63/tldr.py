@@ -44,9 +44,10 @@ def is_old_usage(line):
 
 
 def is_code_example(line):
-    start_check = line.startswith(('`', '    '))
+    start_check = line.startswith('`')
     end_check = line.rstrip().endswith('`')
-    return (start_check and end_check)
+    indent_check = line.startswith('    ')
+    return ((start_check and end_check) or indent_check)
 
 
 def is_line_break(line):
