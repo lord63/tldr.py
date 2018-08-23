@@ -131,7 +131,7 @@ def init():
     tldr_repo = "https://github.com/tldr-pages/tldr.git"
     default_config_path = path.join(
         (os.environ.get('TLDR_CONFIG_DIR') or
-         os.environ.get('XDG_CONFIG_DIR') or
+         os.environ.get('XDG_CONFIG_HOME') or
          path.join(path.expanduser('~'), '.config')),
         'tldr.py.conf')
     if path.exists(default_config_path):
@@ -143,12 +143,12 @@ def init():
             click.echo('{0} is empty. Cloning {1} ...'.format(
                 repo_path, tldr_repo))
             try:
-                subprocess.Popen('git clone --depth 1 {0} {1}'.format(
-                    tldr_repo, repo_path))
+                subprocess.call('git clone --depth 1 {0} {1}'.format(
+                    tldr_repo, repo_path).split())
             except OSError:
                 sys.exit("Automatic git clone failed. Please check repo path exists and is writable. Further check if git is installed.")
         else:
-            subprocess.Popen('cd {0} && git pull'.format(repo_path))
+            subprocess.call('cd {0} && git pull'.format(repo_path).split())
 
         platform = click.prompt("Input your platform(linux, osx or sunos)")
         if platform not in ['linux', 'osx', 'sunos']:

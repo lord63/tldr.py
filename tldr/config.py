@@ -15,7 +15,7 @@ def get_config():
     """Get the configurations from config file and return it as a dict."""
     config_path = path.join(
         (os.environ.get('TLDR_CONFIG_DIR') or
-         os.environ.get('XDG_CONFIG_DIR') or
+         os.environ.get('XDG_CONFIG_HOME') or
          path.join(path.expanduser('~'), '.config')),
         'tldr.py.conf')
     if not path.exists(config_path):
