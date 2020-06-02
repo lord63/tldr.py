@@ -47,8 +47,15 @@ Install
 Usage
 -----
 
-Initialize
-~~~~~~~~~~
+Initialize with script
+~~~~~~~~~~~~~~~~~~~~~~
+
+```
+$ curl -s https://raw.githubusercontent.com/lord63/tldr.py/master/install.sh | bash
+```
+
+Initialize by hand
+~~~~~~~~~~~~~~~~~~
 
 -  firstly, clone the tldr repo to somewhere(e.g. ~/code/tldr). We will
    use it when we look for a command usage.
