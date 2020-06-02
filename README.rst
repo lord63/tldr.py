@@ -42,13 +42,20 @@ Install
 
 ::
 
-    $ (sudo) pip install tldr.py
+   $ (sudo) pip install tldr.py
 
 Usage
 -----
 
-Initialize
-~~~~~~~~~~
+Initialize with script
+~~~~~~~~~~~~~~~~~~~~~~
+
+::
+
+   $ curl -s https://raw.githubusercontent.com/lord63/tldr.py/master/install.sh | bash
+
+Initialize by hand
+~~~~~~~~~~~~~~~~~~
 
 -  firstly, clone the tldr repo to somewhere(e.g. ~/code/tldr). We will
    use it when we look for a command usage.
@@ -56,7 +63,7 @@ Initialize
    ::
 
        $ cd ~/code
-       $ git clone git@github.com:tldr-pages/tldr.git
+       $ git clone https://github.com/tldr-pages/tldr.git
 
 -  then, init the configuration file, the default location for the
    configuration file is your home directory, you can use the
@@ -66,7 +73,7 @@ Initialize
    ::
 
        $ tldr init
-       Input the tldr repo path(absolute path): (e.g. /home/lord63/code/tldr/)
+       Input the tldr repo path: (e.g. /home/lord63/code/tldr/)
        Input your platform(linux, osx or sunos): (e.g. linux)
        Initializing the config file at ~/.tldrrc
 
@@ -137,6 +144,15 @@ A: Find the location of the command page; add the command usages; done.
 A: Add the command pages to the right folder(e.g. /tldrrepo/pages/linux);
 rebuild the index; done.
 
+    Q: I want a short command like ``tldr COMMAND``, not ``tldr find COMMAND``.
+
+A: I'm afraid not, but you can add an alias: ``alias howto='tldr find'``, then use ``howto tar``.
+
+    Q: I want fuzzy find command usage.
+
+A : Opition one: ``tldr list | grep KEYWORD``, option two(suggested way): install fzf_ first,
+then use ``tldr list | fzf | xargs -I{} tldr find {}``, you will love it.
+
     Q: I don't like the default color theme, how to change it?
 
 A: Edit the tldr configuration file at ``~/.tldrrc``; modify the color
@@ -188,3 +204,4 @@ MIT.
 .. |Coverage Status| image:: https://codecov.io/github/lord63/tldr.py/coverage.svg?branch=master
    :target: https://codecov.io/github/lord63/tldr.py?branch=master
 .. |Python Versions| image:: https://img.shields.io/pypi/pyversions/tldr.py.svg
+.. _fzf: https://github.com/junegunn/fzf

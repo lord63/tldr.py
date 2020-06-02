@@ -46,5 +46,5 @@ class TestInit(BasicTestCase):
         os.remove(self.config_path)
         result = self.call_init_command(platform='myos')
         assert result.exception.args[0] == (
-            "Platform should be in linux, osx or sunos."
+            "Platform should be linux, osx or sunos."
         )

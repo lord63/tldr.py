@@ -1,3 +1,9 @@
+2020.06.02 v0.8.0
+- support relative path for download path
+- add install script
+- fuzzy find support(with grep or fzf)
+- drop 3.3/3.4 support, add 3.6+ support
+
 2017.06.26 v0.7.0
 - support the new syntax, #22
 

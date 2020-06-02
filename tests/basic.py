@@ -53,3 +53,8 @@ class BasicTestCase(unittest.TestCase):
             [command_name, '--on', platform] if platform else [command_name])
         result = self.runner.invoke(cli.locate, command_args)
         return result
+
+    def call_list_command(self, platform):
+        command_args = (['--on', platform] if platform else [])
+        result = self.runner.invoke(cli.list, command_args)
+        return result

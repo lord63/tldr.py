@@ -26,17 +26,42 @@ def parse_man_page(command, platform):
     return output_lines
 
 
+def get_index():
+    """Retrieve index in the pages directory."""
+    repo_directory = get_config()['repo_directory']
+    with io.open(path.join(repo_directory, 'pages/index.json'),
+                 encoding='utf-8') as f:
+        index = json.load(f)
+    return index
+
+
+def find_commands():
+    """List commands in the pages directory."""
+    index = get_index()
+    return [item['name'] for item in index['commands']]
+
+
+def find_commands_on_specified_platform(specified_platform):
+    """List commands on the specified platform"""
+    index = get_index()
+    default_platform = get_config()['platform']
+    command_platform = (
+        specified_platform if specified_platform else default_platform)
+    return [
+        item['name'] for item in index['commands']
+        if command_platform in item['platform'] or
+        "common" in item['platform']
+    ]
+
+
 def find_page_location(command, specified_platform):
     """Find the command man page in the pages directory."""
     repo_directory = get_config()['repo_directory']
     default_platform = get_config()['platform']
     command_platform = (
         specified_platform if specified_platform else default_platform)
-
-    with io.open(path.join(repo_directory, 'pages/index.json'),
-                 encoding='utf-8') as f:
-        index = json.load(f)
-    command_list = [item['name'] for item in index['commands']]
+    index = get_index()
+    command_list = find_commands()
     if command not in command_list:
         sys.exit(
             ("Sorry, we don't support command: {0} right now.\n"
@@ -135,13 +160,14 @@ def init():
         click.echo("There is already a config file exists, "
                    "skip initializing it.")
     else:
-        repo_path = click.prompt("Input the tldr repo path(absolute path)")
+        repo_path = click.prompt("Input the tldr repo path")
+        repo_path = os.path.abspath(os.path.expanduser(repo_path))
         if not path.exists(repo_path):
             sys.exit("Repo path not exist, clone it first.")
 
         platform = click.prompt("Input your platform(linux, osx or sunos)")
         if platform not in ['linux', 'osx', 'sunos']:
-            sys.exit("Platform should be in linux, osx or sunos.")
+            sys.exit("Platform should be linux, osx or sunos.")
 
         colors = {
             "description": "blue",
@@ -176,3 +202,12 @@ def locate(command, on):
     """Locate the command's man page."""
     location = find_page_location(command, on)
     click.echo(location)
+
+
+@cli.command()
+@click.option('--on', type=click.Choice(['linux', 'osx', 'sunos']),
+              help='the specified platform.')
+def list(on):
+    """list the command's man page."""
+    command_list = find_commands_on_specified_platform(on)
+    click.echo('\n'.join(command_list))
