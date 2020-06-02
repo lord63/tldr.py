@@ -42,7 +42,7 @@ Install
 
 ::
 
-    $ (sudo) pip install tldr.py
+   $ (sudo) pip install tldr.py
 
 Usage
 -----
@@ -50,9 +50,9 @@ Usage
 Initialize with script
 ~~~~~~~~~~~~~~~~~~~~~~
 
-```
-$ curl -s https://raw.githubusercontent.com/lord63/tldr.py/master/install.sh | bash
-```
+::
+
+   $ curl -s https://raw.githubusercontent.com/lord63/tldr.py/master/install.sh | bash
 
 Initialize by hand
 ~~~~~~~~~~~~~~~~~~
@@ -144,14 +144,14 @@ A: Find the location of the command page; add the command usages; done.
 A: Add the command pages to the right folder(e.g. /tldrrepo/pages/linux);
 rebuild the index; done.
 
-    Q: I want a short command like `tldr COMMAND`, not `tldr find COMMAND`.
+    Q: I want a short command like ``tldr COMMAND``, not ``tldr find COMMAND``.
 
-A: I'm afraid not, but you can add an alias: `alias howto='tldr find'`, then use `howto tar`.
+A: I'm afraid not, but you can add an alias: ``alias howto='tldr find'``, then use ``howto tar``.
 
     Q: I want fuzzy find command usage.
 
-A : Opition one: `tldr list | grep KEYWORD`, option two(suggested way): install fzf_ first,
-then use `tldr list | fzf | xargs -I{} tldr find {}`, you will love it.
+A : Opition one: ``tldr list | grep KEYWORD``, option two(suggested way): install fzf_ first,
+then use ``tldr list | fzf | xargs -I{} tldr find {}``, you will love it.
 
     Q: I don't like the default color theme, how to change it?
 
