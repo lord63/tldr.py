@@ -41,6 +41,19 @@ def find_commands():
     return [item['name'] for item in index['commands']]
 
 
+def find_commands_on_specified_platform(specified_platform):
+    """List commands on the specified platform"""
+    index = get_index()
+    default_platform = get_config()['platform']
+    command_platform = (
+        specified_platform if specified_platform else default_platform)
+    return [
+        item['name'] for item in index['commands']
+        if command_platform in item['platform'] or
+        "common" in item['platform']
+    ]
+
+
 def find_page_location(command, specified_platform):
     """Find the command man page in the pages directory."""
     repo_directory = get_config()['repo_directory']
@@ -192,10 +205,9 @@ def locate(command, on):
 
 
 @cli.command()
-@click.argument('command', required=False)
 @click.option('--on', type=click.Choice(['linux', 'osx', 'sunos']),
               help='the specified platform.')
-def list(command, on):
+def list(on):
     """list the command's man page."""
-    command_list = find_commands()
-    click.echo(' '.join(command_list))
+    command_list = find_commands_on_specified_platform(on)
+    click.echo('\n'.join(command_list))
