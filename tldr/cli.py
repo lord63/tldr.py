@@ -198,4 +198,4 @@ def locate(command, on):
 def list(command, on):
     """list the command's man page."""
     command_list = find_commands()
-    click.echo(' '.join(command_list))
+    click.echo('\n'.join(command_list))

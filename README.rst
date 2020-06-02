@@ -148,6 +148,11 @@ rebuild the index; done.
 
 A: I'm afraid not, but you can add an alias: `alias howto='tldr find'`, then use `howto tar`.
 
+    Q: I want fuzzy find command usage.
+
+A : Opition one: `tldr list | grep KEYWORD`, option two(suggested way): install fzf_ first,
+then use `tldr list | fzf | xargs -I{} tldr find {}`, you will love it.
+
     Q: I don't like the default color theme, how to change it?
 
 A: Edit the tldr configuration file at ``~/.tldrrc``; modify the color
@@ -199,3 +204,4 @@ MIT.
 .. |Coverage Status| image:: https://codecov.io/github/lord63/tldr.py/coverage.svg?branch=master
    :target: https://codecov.io/github/lord63/tldr.py?branch=master
 .. |Python Versions| image:: https://img.shields.io/pypi/pyversions/tldr.py.svg
+.. _fzf: https://github.com/junegunn/fzf
