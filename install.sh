@@ -5,10 +5,6 @@ main() {
         echo 'Error: git is not installed.'
         exit 1
     fi
-    if ! [ -x "$(command -v pip)" ]; then
-        echo 'Error: pip is not installed.'
-        exit 1
-    fi
     if [ -f ~/.tldrrc ]; then
         echo "found ~/.tldrrc, skip install process"
         exit 1
@@ -21,14 +17,7 @@ main() {
     fi
 
     echo "clone tldr pages..."
-    git clone git@github.com:tldr-pages/tldr.git "$tldr_pages_path"
-
-    echo "install tldr.py..."
-    if [[ `which python | grep -o '/usr'` == "/usr" ]]; then
-        sudo pip install -U tldr.py
-    else
-        pip install -U tldr.py
-    fi
+    git clone https://github.com/tldr-pages/tldr.git "$tldr_pages_path"
 
     echo "init tldr.py..."
     platform="unknown"
