@@ -136,13 +136,13 @@ def update():
     os.chdir(repo_directory)
     click.echo("Check for updates...")
 
-    local = subprocess.check_output('git rev-parse master'.split()).strip()
+    local = subprocess.check_output('git rev-parse main'.split()).strip()
     remote = subprocess.check_output(
         'git ls-remote https://github.com/tldr-pages/tldr/ HEAD'.split()
     ).split()[0]
     if local != remote:
         click.echo("Updating...")
-        subprocess.check_call('git checkout master'.split())
+        subprocess.check_call('git checkout main'.split())
         subprocess.check_call('git pull --rebase'.split())
         build_index()
         click.echo("Update to the latest and rebuild the index.")
