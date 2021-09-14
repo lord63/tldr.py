@@ -52,7 +52,7 @@ Initialize with script
 
 ::
 
-   $ curl -s https://raw.githubusercontent.com/lord63/tldr.py/master/install.sh | bash
+   $ curl -fsSL https://raw.githubusercontent.com/lord63/tldr.py/master/install.sh | bash
 
 Or you can initialize by hand
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
