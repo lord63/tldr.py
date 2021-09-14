@@ -52,7 +52,7 @@ Initialize with script
 
 ::
 
-   $ curl -s https://raw.githubusercontent.com/lord63/tldr.py/master/install.sh | bash
+   $ curl -fsSL https://raw.githubusercontent.com/lord63/tldr.py/master/install.sh | bash
 
 Or you can initialize by hand
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -77,7 +77,7 @@ Or you can initialize by hand
        Input your platform(linux, osx or sunos): (e.g. linux)
        Initializing the config file at ~/.tldrrc
 
-and you configuration file should look like this:
+and your configuration file should look like this:
 
 ::
 
@@ -150,7 +150,7 @@ A: I'm afraid not, but you can add an alias: ``alias howto='tldr find'``, then u
 
     Q: I want fuzzy find command usage.
 
-A : Opition one: ``tldr list | grep KEYWORD``, option two(suggested way): install fzf_ first,
+A : Option one: ``tldr list | grep KEYWORD``, option two(suggested way): install fzf_ first,
 then use ``tldr list | fzf | xargs -I{} tldr find {}``, you will love it.
 
     Q: I don't like the default color theme, how to change it?
@@ -158,10 +158,10 @@ then use ``tldr list | fzf | xargs -I{} tldr find {}``, you will love it.
 A: Edit the tldr configuration file at ``~/.tldrrc``; modify the color
 until you're happy with it.
 
-    Q: I faided to update the tldr pages, why?
+    Q: I failed to update the tldr pages, why?
 
 A: Actually, ``tldr.py`` just tries to pull the latest tldr pages for
-you, no magic behinds it. So the reason why you faided to update is that
+you, no magic behind it. So the reason why you failed to update is that
 ``tldr.py`` failed to pull the latest upstream, check the failing output
 and you may know the reason, e.g. you make some changes and haven't
 commit them yet. You can pull the pages by hand so you can have a better
@@ -170,7 +170,7 @@ control on it.
     Q: Why use the git repo instead of the assets packaged by the
     official?
 
-A: In fact, you can use the offical assets if you want, download the
+A: In fact, you can use the official assets if you want, download the
 assets and extract it somewhere, but ``tldr.py`` don't support update it
 using ``tldr update``.
 
@@ -178,7 +178,7 @@ Use a git repo, you can:
 
 -  do the version control, yeah, use git.
 -  better for customization, just edit the pages and add new pages, they
-   belongs to you. You can even maintain your own 'tldr'. If use the
+   belong to you. You can even maintain your own 'tldr'. If use the
    official assets, you'll always get the latest pages.
 
 Contributing
