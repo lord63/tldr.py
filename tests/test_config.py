@@ -1,9 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from __future__ import absolute_import
-
-import mock
+from unittest import mock
 
 from tldr.config import get_config
 from basic import BasicTestCase

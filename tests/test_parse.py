@@ -1,11 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from __future__ import absolute_import
-
 import unittest
-
-import mock
+from unittest import mock
 
 from tldr.parser import parse_page
 

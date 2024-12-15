@@ -1,15 +1,13 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from __future__ import absolute_import
-
 import os
 from os import path
 import unittest
+from unittest import mock
 
 from click.testing import CliRunner
 from tldr import cli
-import mock
 
 
 ROOT = path.dirname(path.realpath(__file__))
