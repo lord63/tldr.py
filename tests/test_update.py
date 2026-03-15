@@ -6,9 +6,16 @@ from __future__ import absolute_import
 import mock
 
 from basic import BasicTestCase
+from tldr import cli
 
 
 class TestUpdate(BasicTestCase):
+    def test_no_main_branch(self):
+        with mock.patch('subprocess.call', return_value=1):
+            result = self.runner.invoke(cli.update)
+        assert result.exit_code != 0
+        assert "renamed 'master' to 'main'" in result.output
+
     def test_update_available(self):
         mock_different_sha1 = [
             '8f82e7445fef6cc83c2e02b82df5f92fe0a909c6',
