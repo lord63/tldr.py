@@ -142,7 +142,7 @@ def update():
         sys.exit(
             "The tldr-pages repo has renamed 'master' to 'main'.\n"
             "Please run the following commands to migrate:\n"
-            "    cd {0} && git fetch origin && git checkout main\n"
+            "    cd {0} && git fetch origin && git checkout -b main origin/main && cd -\n"
             "Then try again.".format(repo_directory)
         )
 
