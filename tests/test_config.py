@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
 
 from unittest import mock
 
@@ -16,7 +15,7 @@ class TestConfig(BasicTestCase):
             )
 
     def test_invalid_yaml_file(self):
-        with mock.patch('io.open',
+        with mock.patch('builtins.open',
                         mock.mock_open(read_data="%YAML:1.0\nname:jhon")):
             self._assert_exception_message(
                 "The config file is not a valid YAML file."
