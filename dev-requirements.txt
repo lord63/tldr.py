@@ -1,6 +1,0 @@
-click
-PyYaml
-pytest >= 3.2
-pytest-flake8
-pytest-cov
-tox

@@ -1,3 +1,9 @@
+2026.03.16 v0.9.0
+- migrate branch name from master to main
+- drop 2.x support, add 3.10+ support
+- migrate travis to github aciton
+- migrate to uv
+
 2020.06.02 v0.8.0
 - support relative path for download path
 - add install script

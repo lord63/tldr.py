@@ -1,9 +1,5 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
 
-from __future__ import absolute_import
-
-import io
 import os
 from os import path
 
@@ -25,7 +21,7 @@ class TestInit(BasicTestCase):
             'platform': 'linux',
             'repo_directory': self.repo_dir
         }
-        with io.open(self.config_path, encoding='utf-8') as f:
+        with open(self.config_path, encoding='utf-8') as f:
             config = yaml.safe_load(f)
         assert expected_config == config
 
