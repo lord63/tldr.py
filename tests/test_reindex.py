@@ -1,7 +1,4 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
-
-from __future__ import absolute_import
 
 import os
 from os import path
@@ -12,7 +9,7 @@ from basic import BasicTestCase
 
 class TestReindex(BasicTestCase):
     def setUp(self):
-        super(TestReindex, self).setUp()
+        super().setUp()
 
         # Add a new page.
         self.page_path = path.join(self.repo_dir, 'pages')
@@ -25,7 +22,7 @@ class TestReindex(BasicTestCase):
                     path.join(self.page_path, 'index_bak.json'))
 
     def tearDown(self):
-        super(TestReindex, self).tearDown()
+        super().tearDown()
         if path.exists(self.new_page):
             os.remove(self.new_page)
         # Restore the index.json.

@@ -1,9 +1,5 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
 
-from __future__ import absolute_import
-
-import io
 import json
 from operator import itemgetter
 import os
@@ -29,8 +25,8 @@ def parse_man_page(command, platform):
 def get_index():
     """Retrieve index in the pages directory."""
     repo_directory = get_config()['repo_directory']
-    with io.open(path.join(repo_directory, 'pages/index.json'),
-                 encoding='utf-8') as f:
+    with open(path.join(repo_directory, 'pages/index.json'),
+              encoding='utf-8') as f:
         index = json.load(f)
     return index
 

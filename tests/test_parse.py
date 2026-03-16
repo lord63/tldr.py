@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
 
 import unittest
 from unittest import mock
@@ -51,6 +50,6 @@ class TestParse(unittest.TestCase):
             '\x1b[0m\n\x1b[0m'
         )
         with mock.patch('tldr.parser.get_config', return_value=mock_config):
-            with mock.patch('io.open', mock.mock_open(read_data=page_content)):
+            with mock.patch('builtins.open', mock.mock_open(read_data=page_content)):
                 result = parse_page('/repo_directory/pages/common/node.md')
                 assert ''.join(result) == expected_result

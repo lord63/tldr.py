@@ -1,9 +1,5 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
 
-from __future__ import absolute_import
-
-import io
 import click
 
 from tldr.config import get_config
@@ -12,7 +8,7 @@ from tldr.config import get_config
 def parse_page(page):
     """Parse the command man page."""
     colors = get_config()['colors']
-    with io.open(page, encoding='utf-8') as f:
+    with open(page, encoding='utf-8') as f:
         lines = f.readlines()
     output_lines = []
     for line in lines[1:]:
