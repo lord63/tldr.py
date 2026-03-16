@@ -33,7 +33,8 @@ class BasicTestCase(unittest.TestCase):
 
     def call_update_command(self):
         with mock.patch('tldr.cli.build_index', return_value=None):
-            result = self.runner.invoke(cli.update)
+            with mock.patch('subprocess.call', return_value=0):
+                result = self.runner.invoke(cli.update)
         return result
 
     def call_find_command(self, command_name, platform):

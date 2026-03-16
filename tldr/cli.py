@@ -134,15 +134,27 @@ def update():
     """Update to the latest pages."""
     repo_directory = get_config()['repo_directory']
     os.chdir(repo_directory)
+
+    if subprocess.call(
+        ['git', 'rev-parse', '--verify', 'main'],
+        stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL
+    ) != 0:
+        sys.exit(
+            "The tldr-pages repo has renamed 'master' to 'main'.\n"
+            "Please run the following commands to migrate:\n"
+            "    cd {0} && git fetch origin && git checkout -b main origin/main && cd -\n"
+            "Then try again.".format(repo_directory)
+        )
+
     click.echo("Check for updates...")
 
-    local = subprocess.check_output('git rev-parse master'.split()).strip()
+    local = subprocess.check_output('git rev-parse main'.split()).strip()
     remote = subprocess.check_output(
         'git ls-remote https://github.com/tldr-pages/tldr/ HEAD'.split()
     ).split()[0]
     if local != remote:
         click.echo("Updating...")
-        subprocess.check_call('git checkout master'.split())
+        subprocess.check_call('git checkout main'.split())
         subprocess.check_call('git pull --rebase'.split())
         build_index()
         click.echo("Update to the latest and rebuild the index.")
