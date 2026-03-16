@@ -1,9 +1,9 @@
 [project]
 name = "tldr.py"
-version = "0.8.0"
+version = "0.9.0"
 description = "A python client for tldr: simplified and community-driven man pages."
 readme = "README.rst"
-license = "MIT"
+license = { text = "MIT" }
 authors = [
     { name = "lord63", email = "lord63.j@gmail.com" },
 ]

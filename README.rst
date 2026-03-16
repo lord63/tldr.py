@@ -1,7 +1,7 @@
 tldr.py
 =======
 
-|Latest Version| |Build Status| |Coverage Status| |Python Versions|
+|Latest Version|
 
 Yet another python client for
 `tldr <https://github.com/tldr-pages/tldr>`__.
@@ -199,9 +199,4 @@ MIT.
 
 .. |Latest Version| image:: http://img.shields.io/pypi/v/tldr.py.svg
    :target: https://pypi.python.org/pypi/tldr.py
-.. |Build Status| image:: https://travis-ci.org/lord63/tldr.py.svg
-   :target: https://travis-ci.org/lord63/tldr.py
-.. |Coverage Status| image:: https://codecov.io/github/lord63/tldr.py/coverage.svg?branch=master
-   :target: https://codecov.io/github/lord63/tldr.py?branch=master
-.. |Python Versions| image:: https://img.shields.io/pypi/pyversions/tldr.py.svg
 .. _fzf: https://github.com/junegunn/fzf
